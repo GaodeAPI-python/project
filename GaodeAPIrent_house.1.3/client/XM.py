@@ -42,7 +42,6 @@ class Main_window(QWidget):
         biaoti = QLabel('高德API在线租房',self)
         biaoti.setFont(QFont('宋体', 28))
         biaoti.resize(290,170)
-        # biaoti.move(362,0)
         biaoti.move(352,0)
         biaoti.setStyleSheet('QLabel{color:white}'
                              'QLabel:hover{color:gold}')
@@ -51,7 +50,7 @@ class Main_window(QWidget):
         login = QPushButton('登录', self)
         login.setToolTip('点击登录')
         #调整按钮尺寸为默认宽高
-        # login.resize(login.sizeHint())
+
         #设置按钮在窗口中位置距左500距上0
         login.move(420, 250)
         login.resize(86,32)
@@ -61,10 +60,6 @@ class Main_window(QWidget):
                             'QPushButton{color:white}')
         login.setFlat(True)
         #窗口和控件都半透明
-        # login.setWindowOpacity(0.1)
-        
-
-        # self.register = QPushButton('注册')
         #注册按钮并设置鼠标悬停提示
         register = QPushButton('注册', self)
         register.setToolTip('点击注册')
@@ -84,7 +79,6 @@ class Main_window(QWidget):
 
         #帐号
         name = QLabel('帐号:',self)
-        # name.setFont(QFont('宋体'))
         name.move(370,150)
         name.setStyleSheet('QLabel{color:white}')
 
@@ -95,7 +89,6 @@ class Main_window(QWidget):
 
         #密码
         passwd = QLabel('密码:',self)
-        # passwd.setFont(QFont('宋体'))
         passwd.move(370,200)
         passwd.setStyleSheet('QLabel{color:white}')
 
@@ -118,9 +111,6 @@ class Main_window(QWidget):
         quit.setStyleSheet('QPushButton{background-color:white}'
                            'QPushButton{color:black}'
                            'QPushButton:hover{color:gold}')
-
-        # 设置窗口离左边的距离50 上面的距离100 宽800，高500
-        # self.setGeometry(600, 350, 658, 500)
 #--
         self.resize(658,380)
         self.center()
@@ -164,53 +154,10 @@ class Main_window(QWidget):
 
 
         if name=='' or pwd=='':
-#--         
-            # cb = QCheckBox('所有文档都按此操作')
-            # msgBox = QMessageBox()
-            # msgBox.setWindowTitle('警告')
-            # msgBox.setIcon(QMessageBox.warning)
-            # msgBox.setText('这是一个警告消息对话框')
-
-            # Yes = msgBox.addButton('是的',QMessageBox.YesRole)
-            # msgBox.setDefaultButton(Yes)
-            # msgBox.setCheckBox(cb)
-            # cb.stateChanged.connect(self.check)
-            # msgBox.exec()
-
-            # cb = QCheckBox('所有文档都按此操作')
-            # cb = QCheckBox()
-#--
-            # msgBox = QMessageBox()
-            # msgBox.setWindowTitle('警告')
-            # msgBox.setIcon(QMessageBox.Warning)
-            # msgBox.setText('账户名，密码不能为空')
-#--
-            # msgBox.setInformativeText('出现更改愿意保存吗?')
-#--
-            # Ok = msgBox.addButton('好的', QMessageBox.AcceptRole)
-#--
-            # NoSave = msgBox.addButton('取消', QMessageBox.RejectRole)
-            # Cancel = msgBox.addButton('不保存', QMessageBox.DestructiveRole)
-            # msgBox.setDefaultButton(Ok)
-            # msgBox.setCheckBox(cb)
-            # cb.stateChanged.connect(self.check)
-#--
-            # reply = msgBox.exec()
-            # reply = QMessageBox.AcceptRole
-#--
-            #     self.la.setText('你选择了保存！')
-            # elif reply == QMessageBox.RejectRole:
-            #     self.la.setText('你选择了取消！')
-            # else:
-            #     self.la.setText('你选择了不保存！')
-
 #--            
             print(QMessageBox.warning(self,'警告','表单不能为空',QMessageBox.Yes,QMessageBox.Yes))
             return
         else:
-#--
-            # m = hashlib.md5()
-            # m.update(pwd.encode())
 
             # sha1加密
             m = sha1()
@@ -221,39 +168,16 @@ class Main_window(QWidget):
             my_url = 'http://127.0.0.1:5009/login?name=%s&pwd=%s' % (name, pwd)
             respon = requests.get(my_url)
             result = eval(respon.text)
-            # db = connect(host='localhost',
-            #              user='root',
-            #              password='123456',
-            #              database='study',
-            #              charset='utf8',
-            #              port=3306)
-            #
-            # cursor = db.cursor()
-            # sql = "select name,pwd from userinfo where name=%s and pwd=%s;"
-            # # cursor.execute(sql,[name,pwd])
-            #
-            # cursor.execute(sql,[name,m.hexdigest()])
-            # result=cursor.fetchall()
+
             if len(result)==0:
                 print(QMessageBox.warning(self,'请重新输入','账户名或密码错误!',QMessageBox.Yes,QMessageBox.Yes))
-                # msgBox = QMessageBox()
-                # msgBox.setWindowTitle('警告')
-                # msgBox.setIcon(QMessageBox.Warning)
-                # msgBox.setText('账户名或密码错误')
-                # Ok = msgBox.addButton('好的',QMessageBox.AcceptRole)
-                # # msgBox.setDefaultButton(Ok)
-                # msgBox.exec()
-                # QMessageBox.AcceptRole
                 return
             else:
-                # Welcome = WelcomeWindow()
                 Welcome = WelcomeWindow1()
                 self.windowList.append(Welcome)
                 self.close()
                 Welcome.show()
-            
-            # cursor.close()
-            # db.close()
+
 
     def mouseMoveEvent(self, e: QMouseEvent):  # 重写移动事件
         self._endPos = e.pos() - self._startPos
@@ -299,15 +223,7 @@ class WelcomeWindow(QWidget):
         logout.setFont(QFont('宋体'))
         logout.move(1116,10)
         logout.setStyleSheet('QLabel{color:black}')
-        # logout.setFlat(True)
 
-        # self.browser = QWebEnginerView()
-        # self.browser.load(QUrl('http://www.baidu.com'))
-        # self.setCentrawWidget(self.browser)
-
-#--
-        #设置点击注销回到登录界面
-        # logout.clicked.connect()
 #--
         #收藏
         collection = QPushButton('收藏',self)
@@ -326,9 +242,7 @@ class WelcomeWindow(QWidget):
         quit.setStyleSheet('QPushButton{background-color:white}'
                            'QPushButton{color:white}'
                            'QPushButton:hover{color:black}')
-        
-        # view = QWebEnginerView()
-        # view.load(Qurl.fromLocalFile('/home/tarena/zsh/PyQt/xm1.5/main1.html'))
+
 
 
     def mouseMoveEvent(self, e: QMouseEvent):  # 重写移动事件
@@ -357,32 +271,12 @@ class WelcomeWindow(QWidget):
             self.close()
 
 
-    # windowList = []
-    # def question(self):
-    #     the_window = Main_window()
-    #     value = QMessageBox.warning(self,'高德API在线租房','您确定返回登录界面吗？',QMessageBox.Yes,QMessageBox.No)
-    #     if value == QMessageBox.Yes:
-            
-    #         WelcomeWindow.close()
-    #         the_window.show()
-
-
-
-    # windowList = []
-    # def closeEvent(self, event):
-    #     # QMessageBox.question(self,'高德API在线租房','是否要退出注册',QMessageBox.Yes,QMessageBox.Yes)
-    #     the_window = Main_window()
-    #     self.windowList.append(the_window)
-    #     the_window.show()
-    #     event.accept()
-#--
-# def show_new(url = 'sdasd'):
-# #     print(url)
 class MainWindow1(QMainWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setWindowTitle('高德API在线租房')
         self.showMaximized()
+        self.setWindowIcon(QIcon('img/5-32px.ico'))
 
 class WebEngineView(QWebEngineView):
     windowList = []
@@ -402,19 +296,13 @@ class WelcomeWindow1(QMainWindow):
         super().__init__(*args, **kwargs)
 
         self.setWindowTitle('高德API在线租房')
-        self.setWindowIcon(QIcon('icons/icon.png'))
+        self.setWindowIcon(QIcon('img/5-32px.ico'))
 
-        # self.setGeometry(350,200,1263,640)
 #--
         self.resize(1263,640)
         self.center()
-#--
-
-        # 设置窗口无边框
-        # self.setWindowFlags(Qt.FramelessWindowHint)
      
         self.browser = WebEngineView()
-        # url = '/home/tarena/zsh/PyQt/xm1.75/map01.html'
         url = 'http://127.0.0.1:5009/index'
         self.browser.load(QUrl(url))
         # self.browser.urlChanged(QUrl).connect(show_new())
@@ -566,41 +454,6 @@ class WelcomeWindow1(QMainWindow):
         else:
             pass
 
-    # windowList1 = []
-    # def closeEvent(self, event):
-    #     # QMessageBox.question(self,'高德API在线租房','是否要退出注册',QMessageBox.Yes,QMessageBox.Yes)
-    #     the_window = Main_window()
-    #     self.windowList1.append(the_window)
-    #     the_window.show()
-    #     event.accept()
-
-    # def mouseMoveEvent(self, e: QMouseEvent):  # 重写移动事件
-    #     self._endPos = e.pos() - self._startPos
-    #     self.move(self.pos() + self._endPos)
-
-    # def mousePressEvent(self, e: QMouseEvent):
-    #     if e.button() == Qt.LeftButton:
-    #         self._isTracking = True
-    #         self._startPos = QPoint(e.x(), e.y())
-
-    # def mouseReleaseEvent(self, e: QMouseEvent):
-    #     if e.button() == Qt.LeftButton:
-    #         self._isTracking = False
-    #         self._startPos = None
-    #         self._endPos = None
-
-
-    # #按esc退出登录
-    # windowList = []
-    # def keyPressEvent(self, e):
-    #     the_window = Main_window()
-    #     self.windowList.append(the_window)
-        
-    #     if e.key() == Qt.Key_Escape:
-    #         the_window.show()
-    #         self.close()
-
-
 
 class SecondWindow(QWidget):
     def __init__(self):
@@ -612,9 +465,7 @@ class SecondWindow(QWidget):
         self.resize(500,717)
         self.center()
 
-#--
-        # self.setWindowFlags(Qt.FramelessWindowHint)
-        # self.setWindowFlags(Qt.MSWindowsFixedSizeDialogHint)
+
         # 窗口透明
         self.setAttribute(Qt.WA_TranslucentBackground, True)
 
@@ -712,17 +563,6 @@ class SecondWindow(QWidget):
                                         'QPushButton{background-image:url(img/register_1.png)}'
                                         'QPushButton:hover{background-image:url(img/register_3.png)}')
 
-        # #创建一个关闭按钮
-        # quit = QPushButton('x',self)
-        # # quit.clicked.connect(self.closeEvent)
-        # quit.clicked.connect(QCoreApplication.instance().quit)
-        # quit.resize(18,18)
-        # quit.move(0,0)
-        # quit.setToolTip('点击关闭')
-        # quit.setFlat(True)
-        # quit.setStyleSheet('QPushButton{background-color:white}'
-        #                    'QPushButton{color:black}'
-        #                    'QPushButton:hover{color:gold}')
 #--
         # 密码框过滤
         reg = QRegExp('^[A-Z]{1}[A-Za-z|_|0-9]{5,16}$')
@@ -751,8 +591,7 @@ class SecondWindow(QWidget):
     def sunc(self):
         name=self.register_name_text.text()
         email=self.register_email_text.text()
-        # userinfo1=userinfo(name,email)
-        # self.code = userinfo1.getcode()
+
 
        
 
@@ -760,34 +599,9 @@ class SecondWindow(QWidget):
         if email == '':
             print(QMessageBox.warning(self,'高德API在线租房系统','请填写邮箱地址',QMessageBox.Ok,QMessageBox.Ok))
 
-            # msgBox = QMessageBox()
-            # msgBox.setWindowTitle('高德API在线租房系统')
-            # msgBox.setIcon(QMessageBox.Warning)
-            # msgBox.setText('请填写邮箱地址')
-            # Ok = msgBox.addButton('好的',QMessageBox.AcceptRole)
-            # msgBox.setDefaultButton(Ok)
-            # msgBox.exec()
-            # QMessageBox.AcceptRole
-
-
-#--
-#         elif not self.code: #如果没有验证码，报错
-# #--         
-#             print('1')
-#             del userinfo1
-#             print('2')
-#             print(QMessageBox.warning(self,'高德API在线租房系统','验证码不能为空',QMessageBox.Ok,QMessageBox.Ok))
         elif name == '':
             print(QMessageBox.warning(self,'高德API在线租房系统','请填写昵称',QMessageBox.Ok,QMessageBox.Ok))
 
-            # msgBox = QMessageBox()
-            # msgBox.setWindowTitle('高德API在线租房系统')
-            # msgBox.setIcon(QMessageBox.Warning)
-            # msgBox.setText('请填写昵称')
-            # Ok = msgBox.addButton('好的',QMessageBox.AcceptRole)
-            # msgBox.setDefaultButton(Ok)
-            # msgBox.exec()
-            # QMessageBox.AcceptRole
         else:
             userinfo1=userinfo(name,email)
             self.code = userinfo1.getcode()
